@@ -1,9 +1,9 @@
 {
-  "version": "1.0.0",
-  "release_date": "2026-01-31",
-  "changelog": "- 初始版本\n- 网站管理（Nginx配置、SSL证书）\n- 文件管理（上传、下载、压缩）\n- 软件管理（OpenResty、PHP、MySQL、Redis）\n- FTP用户管理\n- 计划任务\n- 防火墙管理\n- Web终端\n- 版本自动更新",
+  "version": "1.0.1",
+  "release_date": "2026-02-01",
+  "changelog": "- 用户权限系统优化（分组显示、批量操作）\n- 网站管理自动开放防火墙端口\n- 网站删除时自动删除关联FTP用户\n- FTP默认端口改为211，被动模式端口40000-40100\n- FTP用户列表显示密码并支持复制\n- FTP配置显示服务器公网IP\n- 软件删除增加确认提示\n- 修复公网IP获取问题",
   "download_url": "https://raw.githubusercontent.com/owen2026a/bt-releases/main/releases/bt",
-  "checksum": "sha256:c606392b13cb18f9fd9502086a710c7d3e4e4cd36b92f72908b4d01d5a3531a5",
-  "file_size": 17764504,
+  "checksum": "sha256:5c23d2126e04106c67114c991b9a8e77cfca6acdea51e70508b53a7b8e9a7f03",
+  "file_size": 17924248,
   "min_version": "1.0.0"
 }
