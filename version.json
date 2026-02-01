@@ -1,10 +1,10 @@
 {
-  "version": "1.0.3",
+  "version": "1.0.4",
   "release_date": "2026-02-01",
-  "changelog": "- 新增 CDN 源站优化功能（TCP BBR、大缓冲区、文件缓存、DirectIO）\n- FTP 用户列表显示密码，支持点击复制\n- FTP 配置显示服务器公网IP\n- 网站添加非标准端口时自动开放防火墙\n- 删除网站时自动删除关联FTP用户\n- FTP 默认端口改为211，被动端口40000-40100\n- 新增 install.sh/uninstall.sh 自动化脚本",
-  "download_url": "https://raw.githubusercontent.com/owen2026a/bt-releases/main/releases/bt",
-  "templates_url": "https://raw.githubusercontent.com/owen2026a/bt-releases/main/releases/templates.tar.gz",
-  "checksum": "sha256:0eda9936107796209bd552b360839ed01809b61d57f85cebcba72023908f4d18",
-  "file_size": 17965208,
+  "changelog": "- 修复安装向导软件检测问题\n- 面板端口修改时自动添加防火墙规则\n- 安装脚本支持升级模式（保留数据库和配置）\n- 网站管理增强（CDN源站优化配置）\n- 系统优化功能增强",
+  "download_url": "https://raw.githubusercontent.com/owen2026a/bt-releases/main/releases/bt_1.0.4_linux_amd64",
+  "templates_url": "https://raw.githubusercontent.com/owen2026a/bt-releases/main/releases/templates_1.0.4.tar.gz",
+  "checksum": "sha256:4ad2363ab9885f2c7545762e326d17e3baf8951a15ddb75fe538f7fe30b5a50d",
+  "file_size": 18340864,
   "min_version": "1.0.0"
 }
