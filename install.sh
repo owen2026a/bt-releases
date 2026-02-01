@@ -168,7 +168,7 @@ if systemctl is-active --quiet "$SERVICE_NAME"; then
     echo -e "访问地址: ${GREEN}https://服务器IP:8099${NC}"
     echo ""
     echo -e "默认账号: ${YELLOW}admin${NC}"
-    echo -e "默认密码: ${YELLOW}admin123${NC}"
+    echo -e "默认密码: ${YELLOW}admin123456${NC}"
     echo ""
     echo -e "${RED}重要: 请立即登录并修改默认密码！${NC}"
     echo ""
