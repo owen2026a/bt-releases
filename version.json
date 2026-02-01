@@ -3,6 +3,7 @@
   "release_date": "2026-02-01",
   "changelog": "- 用户权限系统优化（分组显示、批量操作）\n- 网站管理自动开放防火墙端口\n- 网站删除时自动删除关联FTP用户\n- FTP默认端口改为211，被动模式端口40000-40100\n- FTP用户列表显示密码并支持复制\n- FTP配置显示服务器公网IP\n- 软件删除增加确认提示\n- 修复公网IP获取问题",
   "download_url": "https://raw.githubusercontent.com/owen2026a/bt-releases/main/releases/bt",
+  "templates_url": "https://raw.githubusercontent.com/owen2026a/bt-releases/main/releases/templates.tar.gz",
   "checksum": "sha256:5c23d2126e04106c67114c991b9a8e77cfca6acdea51e70508b53a7b8e9a7f03",
   "file_size": 17924248,
   "min_version": "1.0.0"
