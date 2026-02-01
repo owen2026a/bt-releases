@@ -1,10 +1,10 @@
 {
-  "version": "1.0.2",
+  "version": "1.0.3",
   "release_date": "2026-02-01",
-  "changelog": "- 新增 OpenResty 一键优化功能\n- 优化 systemd 服务自动安装\n- 修复公网IP获取问题\n- 网站日志默认只记录error日志\n- 自动创建日志目录避免配置测试失败\n- 统一应用目录到 /www/bt/",
+  "changelog": "- 新增 CDN 源站优化功能（TCP BBR、大缓冲区、文件缓存、DirectIO）\n- FTP 用户列表显示密码，支持点击复制\n- FTP 配置显示服务器公网IP\n- 网站添加非标准端口时自动开放防火墙\n- 删除网站时自动删除关联FTP用户\n- FTP 默认端口改为211，被动端口40000-40100\n- 新增 install.sh/uninstall.sh 自动化脚本",
   "download_url": "https://raw.githubusercontent.com/owen2026a/bt-releases/main/releases/bt",
   "templates_url": "https://raw.githubusercontent.com/owen2026a/bt-releases/main/releases/templates.tar.gz",
-  "checksum": "sha256:d2d9b1cf92e13cfe654e68c0c9aca7c71852879090fcd5b465c4162ef04b35a5",
-  "file_size": 17952920,
+  "checksum": "sha256:0eda9936107796209bd552b360839ed01809b61d57f85cebcba72023908f4d18",
+  "file_size": 17965208,
   "min_version": "1.0.0"
 }
