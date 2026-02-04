@@ -40,7 +40,7 @@ wget -qO- https://raw.githubusercontent.com/owen2026a/bt-releases/main/install.s
 安装完成后，通过浏览器访问：
 
 ```
-https://服务器IP:8099
+https://服务器IP:38899
 ```
 
 **默认账号**：`admin`  
