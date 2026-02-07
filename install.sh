@@ -17,23 +17,10 @@ BACKUP_DIR="/www/bt/backup"
 BINARY_PATH="/www/bt/bt"
 SERVICE_NAME="bt"
 VERSION_URL="https://raw.githubusercontent.com/owen2026a/bt-releases/main/version.json"
-DB_FILE="$APP_DIR/admin.db"
 
-# 检测是否为升级（已存在数据库文件）
-IS_UPGRADE=false
-if [ -f "$DB_FILE" ]; then
-    IS_UPGRADE=true
-fi
-
-if [ "$IS_UPGRADE" = true ]; then
-    echo -e "${GREEN}========================================${NC}"
-    echo -e "${GREEN}       BT Panel 升级脚本${NC}"
-    echo -e "${GREEN}========================================${NC}"
-else
-    echo -e "${GREEN}========================================${NC}"
-    echo -e "${GREEN}       BT Panel 安装脚本${NC}"
-    echo -e "${GREEN}========================================${NC}"
-fi
+echo -e "${GREEN}========================================${NC}"
+echo -e "${GREEN}       BT Panel 安装脚本${NC}"
+echo -e "${GREEN}========================================${NC}"
 echo ""
 
 # 检查是否为 root 用户
@@ -52,16 +39,11 @@ fi
 . /etc/os-release
 echo -e "${GREEN}检测到系统: ${ID} ${VERSION_ID}${NC}"
 
-if [ "$IS_UPGRADE" = true ]; then
-    echo -e "${GREEN}检测到已有安装，将进行升级（保留数据库和配置）${NC}"
-fi
-
 # 创建目录
 echo -e "${YELLOW}创建应用目录...${NC}"
-mkdir -p "$APP_DIR" "$DATA_DIR" "$BACKUP_DIR" "$OPTIMIZE_BACKUP_DIR"
+mkdir -p "$APP_DIR" "$DATA_DIR" "$BACKUP_DIR"
 chmod 700 "$APP_DIR" "$DATA_DIR" "$BACKUP_DIR"
-chmod 755 "$OPTIMIZE_BACKUP_DIR"
-chown root:root "$APP_DIR" "$DATA_DIR" "$BACKUP_DIR" "$OPTIMIZE_BACKUP_DIR"
+chown root:root "$APP_DIR" "$DATA_DIR" "$BACKUP_DIR"
 
 # 获取版本信息
 echo -e "${YELLOW}获取最新版本信息...${NC}"
@@ -140,17 +122,9 @@ if [ -f "$TEMPLATES_TAR" ]; then
     rm -f "$TEMPLATES_TAR"
 fi
 
-# 创建或更新 systemd 服务
-SERVICE_FILE="/etc/systemd/system/bt.service"
-if [ "$IS_UPGRADE" = true ] && [ -f "$SERVICE_FILE" ]; then
-    echo -e "${YELLOW}升级模式：保留现有 systemd 配置...${NC}"
-    # 从现有配置中获取端口
-    CURRENT_PORT=$(grep -oP 'Environment=PORT=\K[0-9]+' "$SERVICE_FILE" 2>/dev/null || echo "38899")
-    echo -e "${GREEN}当前端口: ${CURRENT_PORT}${NC}"
-else
-    echo -e "${YELLOW}配置 systemd 服务...${NC}"
-    CURRENT_PORT="38899"
-    cat > "$SERVICE_FILE" << 'EOF'
+# 创建 systemd 服务
+echo -e "${YELLOW}配置 systemd 服务...${NC}"
+cat > /etc/systemd/system/bt.service << 'EOF'
 [Unit]
 Description=BT Panel - Server Management Panel
 After=network.target
@@ -166,35 +140,15 @@ RestartSec=5
 StandardOutput=journal
 StandardError=journal
 
-# 安全设置
-NoNewPrivileges=false
-ProtectSystem=false
-ProtectHome=false
-
 # 环境变量
-Environment=PORT=38899
+Environment=PORT=8099
 
 [Install]
 WantedBy=multi-user.target
 EOF
-fi
 
 # 重载 systemd
 systemctl daemon-reload
-
-# 检测并开启防火墙端口（仅全新安装或端口未开放时）
-if command -v ufw &> /dev/null && ufw status | grep -q "Status: active"; then
-    if ! ufw status | grep -q "${CURRENT_PORT}/tcp"; then
-        echo -e "${YELLOW}检测到 UFW 防火墙已启用，开放端口 ${CURRENT_PORT}...${NC}"
-        ufw allow ${CURRENT_PORT}/tcp comment 'BT Panel'
-    fi
-elif command -v firewall-cmd &> /dev/null && systemctl is-active --quiet firewalld; then
-    if ! firewall-cmd --list-ports | grep -q "${CURRENT_PORT}/tcp"; then
-        echo -e "${YELLOW}检测到 Firewalld 已启用，开放端口 ${CURRENT_PORT}...${NC}"
-        firewall-cmd --permanent --add-port=${CURRENT_PORT}/tcp
-        firewall-cmd --reload
-    fi
-fi
 
 # 启动服务
 echo -e "${YELLOW}启动服务...${NC}"
@@ -207,24 +161,16 @@ sleep 3
 # 检查服务状态
 if systemctl is-active --quiet "$SERVICE_NAME"; then
     echo -e "${GREEN}========================================${NC}"
-    if [ "$IS_UPGRADE" = true ]; then
-        echo -e "${GREEN}       升级完成！${NC}"
-    else
-        echo -e "${GREEN}       安装完成！${NC}"
-    fi
+    echo -e "${GREEN}       安装完成！${NC}"
     echo -e "${GREEN}========================================${NC}"
     echo ""
     echo -e "版本: ${GREEN}${LATEST_VERSION}${NC}"
-    echo -e "访问地址: ${GREEN}https://服务器IP:${CURRENT_PORT}${NC}"
+    echo -e "访问地址: ${GREEN}https://服务器IP:8099${NC}"
     echo ""
-    if [ "$IS_UPGRADE" = true ]; then
-        echo -e "${GREEN}数据库和配置已保留，无需重新登录${NC}"
-    else
-        echo -e "默认账号: ${YELLOW}admin${NC}"
-        echo -e "默认密码: ${YELLOW}admin123456${NC}"
-        echo ""
-        echo -e "${RED}重要: 请立即登录并修改默认密码！${NC}"
-    fi
+    echo -e "默认账号: ${YELLOW}admin${NC}"
+    echo -e "默认密码: ${YELLOW}admin123456${NC}"
+    echo ""
+    echo -e "${RED}重要: 请立即登录并修改默认密码！${NC}"
     echo ""
     echo "常用命令:"
     echo "  systemctl status bt    # 查看状态"
