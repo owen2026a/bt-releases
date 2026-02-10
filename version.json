@@ -1,10 +1,10 @@
 {
   "version": "1.0.4",
   "release_date": "2026-02-01",
-  "changelog": "- 修复安装向导软件检测问题\n- 面板端口修改时自动添加防火墙规则\n- 安装脚本支持升级模式（保留数据库和配置）\n- 网站管理增强（CDN源站优化配置）\n- 系统优化功能增强",
+  "changelog": "- 新增通配符SSL证书申请（DNS-01验证，支持Cloudflare/DNSPod/阿里云）\n- 修复文件管理复制粘贴重复文件问题（提示覆盖/重命名）\n- 修复安装向导软件检测问题\n- 面板端口修改时自动添加防火墙规则\n- 安装脚本支持升级模式（保留数据库和配置）",
   "download_url": "https://raw.githubusercontent.com/owen2026a/bt-releases/main/releases/bt_1.0.4_linux_amd64",
   "templates_url": "https://raw.githubusercontent.com/owen2026a/bt-releases/main/releases/templates_1.0.4.tar.gz",
-  "checksum": "sha256:4ad2363ab9885f2c7545762e326d17e3baf8951a15ddb75fe538f7fe30b5a50d",
-  "file_size": 18340864,
+  "checksum": "sha256:ee35a1a67e391e2cb9312265fca4b6656ad8291c61898b4604f487c57549bfe1",
+  "file_size": 18043032,
   "min_version": "1.0.0"
 }
