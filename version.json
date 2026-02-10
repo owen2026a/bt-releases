@@ -1,10 +1,10 @@
 {
   "version": "1.0.4",
   "release_date": "2026-02-01",
-  "changelog": "- 新增通配符SSL证书申请（DNS-01验证，支持Cloudflare/DNSPod/阿里云）\n- 修复文件管理复制粘贴重复文件问题（提示覆盖/重命名）\n- 修复安装向导软件检测问题\n- 面板端口修改时自动添加防火墙规则\n- 安装脚本支持升级模式（保留数据库和配置）",
+  "changelog": "- 文件管理添加权限修改功能（chmod/chown）\n- 新增通配符SSL证书申请（DNS-01验证）\n- 修复文件管理复制粘贴重复文件问题\n- 面板端口修改自动添加防火墙规则\n- 安装脚本支持升级模式（保留数据库和配置）",
   "download_url": "https://raw.githubusercontent.com/owen2026a/bt-releases/main/releases/bt_1.0.4_linux_amd64",
   "templates_url": "https://raw.githubusercontent.com/owen2026a/bt-releases/main/releases/templates_1.0.4.tar.gz",
-  "checksum": "sha256:ee35a1a67e391e2cb9312265fca4b6656ad8291c61898b4604f487c57549bfe1",
-  "file_size": 18043032,
+  "checksum": "sha256:2da8d5a8221216520cd9fb066a20bd8782400a8d5ea3882bd81e68b7ae6e0c49",
+  "file_size": 18051224,
   "min_version": "1.0.0"
 }
